@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Cotton Development Board'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+   /* 'timezone' => 'UTC',*/
+    'timezone' => env("APP_TIMEZONE", "Asia/Dhaka"),
 
     /*
     |--------------------------------------------------------------------------
