@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Crypt;
 class HomeController extends Controller
 {
     /**
@@ -34,10 +34,10 @@ class HomeController extends Controller
             'previous_station' => 'required',
             'joining_date' => 'required',
             'retirement_date' => 'required',
-            'nid_number' => 'required',
+            'nid_number' => 'required|unique:employees',
             'education' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'email' => 'required|unique:employees',
+            'phone' => 'required|unique:employees',
             'current_address' => 'required|max:200',
             'permanent_address' => 'required|max:200',
             'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
@@ -88,6 +88,15 @@ class HomeController extends Controller
     {
         $employees = Employee::all();
         return view('administration/employee/allEmployee',compact('employees'));
+    }
+
+    public function employeeRemove($id)
+    {
+        $eid = Crypt::decrypt($id);
+        $delete = Employee::find($eid);
+        if(!empty($delete->image)){unlink('assets/administration/images/employees/'.$delete->image);}
+        $delete->delete();
+        return redirect()->back()->with('msg',"✔ Employee REMOVED");
     }
 
 

@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration
             $table->string('joining_date');
             $table->string('retirement_date');
             $table->string('image')->nullable();
-            $table->string('nid_number');
+            $table->string('nid_number')->unique();
             $table->string('current_address');
             $table->string('permanent_address');
             $table->string('phone')->unique();

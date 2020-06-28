@@ -38,7 +38,10 @@
                         <td>{{$s->nid_number}}</td>
                         <td>{{$s->phone}}</td>
                         <td>{{$s->email}}</td>
-                        <td> </td>
+                        <td>
+                            <a href="{{--{{route('orderDelivered',Crypt::encrypt($s->id))}}--}}" title="" class="btn btn-success " onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
+                            <a href="{{route('employeeRemove',Crypt::encrypt($s->id))}}" title="Remove Employee" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>
+                        </td>
 
                     </tr>
                 @endforeach
