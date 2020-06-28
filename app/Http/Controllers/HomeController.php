@@ -84,5 +84,11 @@ class HomeController extends Controller
         return back()->with('msg','✔ Employee Added');
     }
 
+    public function employeeListView()
+    {
+        $employees = Employee::all();
+        return view('administration/employee/allEmployee',compact('employees'));
+    }
+
 
 }

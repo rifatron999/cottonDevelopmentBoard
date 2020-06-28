@@ -1,3 +1,8 @@
+//datatable
+$(document).ready(function () {
+    $('#employee_table').DataTable();
+});
+//datatable #
 //tinymce
 tinymce.init({
     selector: "textarea#textareatiny",
@@ -36,8 +41,7 @@ tinymce.init({
 });
 //tinymce #
 //image preview
-function previewImage(event)
-{
+function previewImage(event) {
     var reader = new FileReader();
     var imageField = document.getElementById("image-preview")
     reader.onload = function()
@@ -51,6 +55,7 @@ function previewImage(event)
 
     document.getElementById("image-field").style.visibility = "visible";
 }
+//image preview #
 //multiple preview
 $(function() {
     // Multiple images preview in browser
@@ -76,7 +81,6 @@ $(function() {
     });
 });
 //multiple preview #
-// image preview #
 //gritter
 function gritter_custom(gfor,title,text) {
     if(gfor == 'image upload')
@@ -86,154 +90,14 @@ function gritter_custom(gfor,title,text) {
         title: title,
         // (string | mandatory) the text inside the notification
         text: text,
-        image: 'assets/vendor/images/icon/bell.gif',
+        image: 'assets/administration/images/icon/bell.gif',
     });
     }
     return false;
 }
 //gritter #
-//page = vendor>category_management
-function setParentId(parent_id)
-{
-    //alert(parent_id);
-    document.getElementById('categoryAdd_parentId').value = parent_id;
-}
-function setCatUpdate(id,name,description)
-{
-    //alert(parent_id);
-    document.getElementById('cat_update_id').value = id ;
-    document.getElementById('cat_update_name').value = name ;
-    document.getElementById('cat_update_des').value = description ;
-}
-//page = vendor>category_management#
-//page = vendor>product_management
-function percentage_cal (){
-let price = document.getElementById('pprice').value;
-let offer_percentage = document.getElementById('poffer_percentage').value;
-document.getElementById('poffer_price').value = parseInt(price - (parseInt(offer_percentage) * parseInt(price))/100);
-}
-//page = vendor>product_management#
-//page = vendor>offer_management
-$(document).on('change','#offer_type',function()
-{
-    let offer_type = document.getElementById('offer_type');
-    let free_product_type = document.getElementById('free_product_type');
-    let offer_percentage_type = document.getElementById('offer_percentage_type');
-    if(offer_type.value == 'Buy one get one'){
-        free_product_type.style.display = 'block';
-        offer_percentage_type.style.display = 'none';
-        document.getElementById('offer_percentage').value = '';
-    }
-    if(offer_type.value == 'Discount'){
-        free_product_type.style.display = 'none';
-        offer_percentage_type.style.display = 'block';
-        var items = document.getElementsByName('free_product_ids[]');
-        for (var i = 0; i < items.length; i++) {
-            if (items[i].type == 'radio')
-                items[i].checked = false;
-        }
-    }
-});
-//page = vendor>offer_management#
-//page = vendor>order_management
-function setOrderShipping(id,orderid,cn,courirer,date)
-{
-    document.getElementById('order_shipping_order_id').value = orderid ;
-    document.getElementById('order_shippment_id').value = id ;
-    document.getElementById('order_shipment_cn').value = cn ;
-    document.getElementById('order_shipment_courier').value = courirer ;
-    document.getElementById('order_shipment_date').value = date ;
-}
-//excel
-//var excel_data ;
-var excel_data ;
-function getSearch(type)
-{
-    var daterange = document.getElementById('daterange').value;
-    if(type === 'temp')
-    {
-        var search = document.getElementById('search_temp').value;
-    }
-    else if(type === 'main')
-    {
-        var search = document.getElementById('search_main').value;
-    }
-    else if(type === 'product')
-    {
-        var search = document.getElementById('search_product').value;
-    }
-    $.ajax({
-        url: "/order_management/search",
-        method: "GET",
-        data: {search: search,type: type,daterange:daterange},
-        dataType:'json',
-        success: function(data)
-        {
-            $("#search_table").html(data.table_data);
-            $("#search_total_record").html(data.total_data);
-            // console.log(data.table_data);
-            //console.log(data.order_id);
-            excel_data = data.order_id.join();
-            document.getElementById('excel_id').value = excel_data ;
-            //console.log(excel_data);
-        }
-    });
-}
-function printDiv(divName)
-{
-    var nonp = document.getElementsByClassName('print_hide');
-   /* document.getElementById('excelButton').disabled = true;
-    document.getElementById('search_type').disabled = true;
-    document.getElementById('search_main').disabled = true;
-    document.getElementById('search_product').disabled = true;
-    document.getElementById('printme').disabled = true;
-    document.getElementById('printed').disabled = false;*/
-
-    for(var i = 0; i < nonp.length; i++)
-    {
-        nonp[i].style.visibility = "hidden";
-    }
-    var printContents = document.getElementById(divName).innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-    for(var i = 0; i < nonp.length; i++)
-    {
-        nonp[i].style.visibility = "visible";
-    }
-    /*document.getElementById('print_count').value = excel_data;*/
-}
-$(document).on('change','#search_type',function()
-{
-    let search_type = document.getElementById('search_type');
-    /*let search_temp = document.getElementById('search_temp');*/
-    let search_main = document.getElementById('search_main');
-    let search_product = document.getElementById('search_product');
-    if(search_type.value === 'main')
-    {
-       /* search_temp.style.display = 'none';*/
-        search_main.style.display = 'block';
-        search_product.style.display = 'none';
-    }
-   /*else if(search_type.value === 'temp')
-   {
-        search_temp.style.display = 'block';
-        search_main.style.display = 'none';
-        search_product.style.display = 'none';
-
-   }*/
-   else if(search_type.value === 'product')
-   {
-      /*  search_temp.style.display = 'none';*/
-        search_main.style.display = 'none';
-       search_product.style.display = 'block';
-
-   }
-});
-//page = vendor>order_management#
-//page = vendor>sales_management
-$(function() {//date range picker
+//date range picker
+/*$(function() {//date range picker
     var start = moment().subtract(0, 'years');
     var end = moment();
     function cb(start, end)
@@ -256,24 +120,6 @@ $(function() {//date range picker
     }, cb);
 
     cb(start, end);
-});
-//page = vendor>sales_management#
-//page = vendor>customer_management
-function getSearchCustomer()
-{
-    var search = document.getElementById('search_customer').value;
-    $.ajax({
-        url: "/customer_management/search",
-        method: "GET",
-        data: {search: search},
-        dataType:'json',
-        success: function(data)
-        {
-            $("#search_customer_table").html(data.table_data);
-            $("#search_customer_total_record").html(data.total_data);
-            // console.log(data.table_data);
-            console.log(data.total_data);
-        }
-    });
-}
-//page = vendor>customer_management#
+});*/
+//date range picker
+

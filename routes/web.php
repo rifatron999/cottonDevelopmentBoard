@@ -11,4 +11,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/employeeadd', 'HomeController@employeeAddView')->name('employeeAddView');
 Route::post('/employeeadd', 'HomeController@employeeAdd')->name('employeeAdd');
+Route::get('/employeelist', 'HomeController@employeeListView')->name('employeeListView');
+
 /*administration ends*/

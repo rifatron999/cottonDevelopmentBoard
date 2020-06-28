@@ -18,7 +18,7 @@
                 </a>
                 <ul class="sub" style="display: none;">
                     <li class="@yield('Emplpyee_Add')" ><a  href="{{ route('employeeAddView') }}"><i class="fas fa-skull"></i> Employee Add</a></li>
-                    <li class="@yield('All_Emplpyee')" ><a  href="{{--{{ route('failedOrderView') }}--}}"><i class="fas fa-skull"></i> All Employee</a></li>
+                    <li class="@yield('All_Emplpyee')" ><a  href="{{ route('employeeListView') }}"><i class="fas fa-skull"></i> All Employee</a></li>
                 </ul>
             </li>
 
