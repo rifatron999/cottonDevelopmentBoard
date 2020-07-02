@@ -44,7 +44,26 @@
 
                 <h3 style="font-weight:bold;">Official Information</h3>
                 <p><span style="font-weight:bold;">Joining Date</span> : {{ $employee->joining_date }}</p>
-                <p><span style="font-weight:bold;">Retirement Date</span> : {{ $employee->retirement_date }}</p>
+                <p><span style="font-weight:bold;">Retirement Date</span> : {{ $employee->retirement_date }}
+                    <b>[ @php
+                        use Carbon\Carbon;
+                        use Carbon\CarbonInterface;
+                        $retire = $employee->retirement_date;
+                        $now = Carbon::now();
+                        $retire_carbon = Carbon::parse($retire);
+                         if($now->diffInDays($retire_carbon) == 0)
+                    {
+                        echo 'today';
+                    }
+                    else
+                    {
+                        echo $retire_carbon->diffForHumans($now, [
+                        'syntax' => CarbonInterface::DIFF_RELATIVE_TO_NOW,
+                        'options' => Carbon::JUST_NOW | Carbon::ONE_DAY_WORDS
+                    ]);
+                    }
+                    @endphp ]</b>
+                </p>
                 <p><span style="font-weight:bold;">Previous Station</span> : {{ $employee->previous_station }}</p>
                 <p> <span style="font-weight:bold;">NID Number</span> : {{ $employee->nid_number }}</p>
             </div>

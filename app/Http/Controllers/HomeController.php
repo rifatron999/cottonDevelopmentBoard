@@ -171,11 +171,11 @@ class HomeController extends Controller
         $eid = Crypt::decrypt($id);
         $employee = Employee::where('id',$eid)->first();
 
-        $join = $employee->joining_date;
+        /*$join = $employee->joining_date;
         $retire = $employee->retirement_date;
         $now = Carbon::now();
         $join_carbon = Carbon::parse($join);
-        $retire_carbon = Carbon::parse($retire);
+        $retire_carbon = Carbon::parse($retire);*/
         /*carbon test*/
         /*echo 'now: ' . $now;
         echo '<br>';
@@ -188,14 +188,14 @@ class HomeController extends Controller
         ]);*/
 
 
-        echo $now->diffInDays($retire_carbon);
-        echo '<br>';
+       /* echo $now->diffInDays($retire_carbon);
+        echo '<br>';*/
 
 
         /*carbon test end */
 
         /*algorithm*/
-        if($now->diffInDays($retire_carbon) == 0)
+        /*if($now->diffInDays($retire_carbon) == 0)
         {
             echo 'today';
         }
@@ -205,11 +205,11 @@ class HomeController extends Controller
             'syntax' => CarbonInterface::DIFF_RELATIVE_TO_NOW,
             'options' => Carbon::JUST_NOW | Carbon::ONE_DAY_WORDS
         ]);
-        }
+        }*/
         /*algorithm ends*/
 
 
-        //return view('administration/employee/employeeDetails',compact('employee'));
+        return view('administration/employee/employeeDetails',compact('employee'));
     }
 
 
