@@ -53,7 +53,7 @@ class employeeController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'education' => $request->education,
-                'dob' => $request->education,
+                'dob' => $request->dob,
             ]);
         }
         else
@@ -134,7 +134,7 @@ class employeeController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'education' => $request->education,
-                'dob' => $request->education,
+                'dob' => $request->dob,
             ]);
         }
         else

@@ -34,7 +34,7 @@
 <table width="100%">
     <tr >
         <td valign="left" >
-            <img  src="assets/administration/images/icon/cdblogo.png" width="90" height="50"    > <br>
+            <img  src="assets/administration/images/icon/cdblogo.png" width="90" height="90"    > <br>
             <p class="gray" style="font-weight:bold;">Official Information</p>
             <p><span style="font-weight:bold;">Joining Date</span> : {{ $employee->joining_date }}</p>
             <p><span style="font-weight:bold;">Retirement Date</span> : {{ $employee->retirement_date }}
@@ -63,7 +63,7 @@
         </td>
         <td align="right">
 
-            <img  src="assets/administration/images/employees/{{ $employee->image }}" width="90" height="50"    >
+            <img  src="assets/administration/images/employees/{{ $employee->image }}" width="90" height="90"    >
             <p class="gray" style="font-weight:bold;">Personal Information </p> <br>
             <p> <span style="font-weight:bold;">Current Address</span> : {{ $employee->current_address }}</p>
             <p> <span style="font-weight:bold;">Permanent Address</span> : {{ $employee->permanent_address }}</p>
