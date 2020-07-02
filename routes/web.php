@@ -10,14 +10,14 @@ Auth::routes();
 /*administration*/
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/employeeadd', 'HomeController@employeeAddView')->name('employeeAddView');
-Route::post('/employeeadd', 'HomeController@employeeAdd')->name('employeeAdd');
-Route::get('/employeelist', 'HomeController@employeeListView')->name('employeeListView');
-Route::get('/employeeRemove/{id}','HomeController@employeeRemove')->name('employeeRemove');
-Route::get('/employeeEdit/{id}','HomeController@employeeEditView')->name('employeeEditView');
-Route::post('/employeeEdit','HomeController@employeeUpdate')->name('employeeUpdate');
-Route::get('/employeeDetails/{id}','HomeController@employeeDetails')->name('employeeDetails');
-Route::get('/employeeDetailsPdf/{id}','HomeController@employeeDetailsPdf')->name('employeeDetailsPdf');
+Route::get('/employeeadd', 'Administration\employeeController@employeeAddView')->name('employeeAddView');
+Route::post('/employeeadd', 'Administration\employeeController@employeeAdd')->name('employeeAdd');
+Route::get('/employeelist', 'Administration\employeeController@employeeListView')->name('employeeListView');
+Route::get('/employeeRemove/{id}','Administration\employeeController@employeeRemove')->name('employeeRemove');
+Route::get('/employeeEdit/{id}','Administration\employeeController@employeeEditView')->name('employeeEditView');
+Route::post('/employeeEdit','Administration\employeeController@employeeUpdate')->name('employeeUpdate');
+Route::get('/employeeDetails/{id}','Administration\employeeController@employeeDetails')->name('employeeDetails');
+Route::get('/employeeDetailsPdf/{id}','Administration\employeeController@employeeDetailsPdf')->name('employeeDetailsPdf');
 
 
 /*administration ends*/
