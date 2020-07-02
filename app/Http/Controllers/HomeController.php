@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use Carbon\CarbonInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -168,7 +170,46 @@ class HomeController extends Controller
     {
         $eid = Crypt::decrypt($id);
         $employee = Employee::where('id',$eid)->first();
-        return view('administration/employee/employeeDetails',compact('employee'));
+
+        $join = $employee->joining_date;
+        $retire = $employee->retirement_date;
+        $now = Carbon::now();
+        $join_carbon = Carbon::parse($join);
+        $retire_carbon = Carbon::parse($retire);
+        /*carbon test*/
+        /*echo 'now: ' . $now;
+        echo '<br>';
+        echo 'retire: ' . $retire_carbon;
+        echo '<br>';echo '<br>';*/
+
+        /*echo $now->diffForHumans($now, [
+            'syntax' => CarbonInterface::DIFF_RELATIVE_TO_NOW,
+            'options' => Carbon::JUST_NOW | Carbon::ONE_DAY_WORDS | Carbon::TWO_DAY_WORDS,
+        ]);*/
+
+
+        echo $now->diffInDays($retire_carbon);
+        echo '<br>';
+
+
+        /*carbon test end */
+
+        /*algorithm*/
+        if($now->diffInDays($retire_carbon) == 0)
+        {
+            echo 'today';
+        }
+        else
+        {
+            echo $retire_carbon->diffForHumans($now, [
+            'syntax' => CarbonInterface::DIFF_RELATIVE_TO_NOW,
+            'options' => Carbon::JUST_NOW | Carbon::ONE_DAY_WORDS
+        ]);
+        }
+        /*algorithm ends*/
+
+
+        //return view('administration/employee/employeeDetails',compact('employee'));
     }
 
 
