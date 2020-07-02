@@ -64,6 +64,7 @@
                         </td>
                         <td>
                             <a href="{{route('employeeDetails',Crypt::encrypt($s->id))}}" title="See Details" target="_blank" class="btn btn-primary "><i class="fas fa-arrow-circle-right"></i> </a>
+                            <a href="{{route('employeeDetailsPdf',Crypt::encrypt($s->id))}}" title="Downlode Employee Details" class="btn btn-default "><i class="fas fa-file-invoice-dollar"></i> </a>
                             <a class="btn btn-success"  href="{{route('employeeEditView',Crypt::encrypt($s->id))}}" target="_blank" title="Edit"><i class="fa fa-edit"></i></a>
                             <a href="{{route('employeeRemove',Crypt::encrypt($s->id))}}" title="Remove Employee" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>
                         </td>
